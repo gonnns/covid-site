@@ -12,18 +12,17 @@ const Div = styled.div`
 
 function Days() {
   const country = useSelector(selectCountry);
-
   const [covid, setCovid] = useState([]);
 
-  const loadToday = async () => {
-    const response = await axios.get('https://api.covid19api.com/total/dayone/country/kr');
+  const loadToday = async (target) => {
+    const response = await axios.get(`https://api.covid19api.com/total/dayone/country/${target}`);
     setCovid(response.data);
   };
 
   // Init
   useEffect(() => {
-    loadToday();
-  }, []);
+    loadToday(country);
+  }, [country]);
 
   return (
     <Div>
