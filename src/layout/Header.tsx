@@ -34,7 +34,7 @@ function Header() {
   const dispatch = useDispatch();
   const country = useSelector(selectCountry);
 
-  const onChangeCountry = (event) => {
+  const onChangeCountry = (event: any) => {
     dispatch(changeCountry(event.target.value));
   };
 
