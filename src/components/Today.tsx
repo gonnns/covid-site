@@ -10,6 +10,7 @@ import { GridComponent, TitleComponent, TooltipComponent } from 'echarts/compone
 import { CanvasRenderer } from 'echarts/renderers';
 import { EChartsInstance, EChartsOption } from 'echarts-for-react';
 
+import { sortBy } from 'lodash';
 import API from '../constants/ApiConstant';
 import { Summary } from '../interface/Summary';
 
@@ -46,7 +47,12 @@ function Today() {
       {
         name: 'Covid Today',
         type: 'bar',
-        data: covid ? covid.Countries.map((item) => [item.Country, item.NewConfirmed]) : [],
+        data: covid
+          ? sortBy(covid.Countries, ['NewConfirmed']).map((item) => [
+              item.Country,
+              item.NewConfirmed,
+            ])
+          : [],
       },
     ],
   };
@@ -57,7 +63,13 @@ function Today() {
 
   return (
     <Div>
-      <ReactEChartsCore echarts={echarts} option={options} notMerge lazyUpdate onChartReady={onChartReady} />
+      <ReactEChartsCore
+        echarts={echarts}
+        option={options}
+        notMerge
+        lazyUpdate
+        onChartReady={onChartReady}
+      />
     </Div>
   );
 }
