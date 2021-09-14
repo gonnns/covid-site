@@ -48,10 +48,10 @@ function Today() {
         name: 'Covid Today',
         type: 'bar',
         data: covid
-          ? sortBy(covid.Countries, ['NewConfirmed']).map((item) => [
-              item.Country,
-              item.NewConfirmed,
-            ])
+          ? sortBy(covid.Countries, ['NewConfirmed'])
+              .reverse()
+              .slice(0, 10)
+              .map((item) => [item.Country, item.NewConfirmed])
           : [],
       },
     ],
