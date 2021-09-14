@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -23,14 +22,10 @@ const Div = styled.div`
 function Today() {
   const [covid, setCovid] = useState<Summary>(null);
 
-  const loadSummary = async () => {
-    const response = await axios.get(API.SUMMARY());
-    setCovid(response.data);
-  };
-
   // Init
   useEffect(() => {
-    loadSummary();
+    API.Summary({}, setCovid);
+    console.log('effect');
   }, []);
 
   echarts.use([TitleComponent, TooltipComponent, GridComponent, BarChart, CanvasRenderer]);
