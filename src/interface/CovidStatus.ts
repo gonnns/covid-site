@@ -10,5 +10,5 @@ export interface CovidStatus {
   Deaths: number;
   Recovered: number;
   Active: number;
-  Date: Date;
+  Date: string;
 }

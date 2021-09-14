@@ -9,7 +9,7 @@ import { LineChart } from 'echarts/charts';
 import { GridComponent, TitleComponent, TooltipComponent } from 'echarts/components';
 
 import { CanvasRenderer } from 'echarts/renderers';
-import { EChartsInstance } from 'echarts-for-react';
+import { EChartsInstance, EChartsOption } from 'echarts-for-react';
 
 import API from '../constants/ApiConstant';
 import { CovidStatus } from '../interface/CovidStatus';
@@ -37,7 +37,22 @@ function Days() {
 
   echarts.use([TitleComponent, TooltipComponent, GridComponent, LineChart, CanvasRenderer]);
 
-  const options = {};
+  const options: EChartsOption = {
+    tooltip: { show: true },
+    xAxis: {
+      type: 'time',
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        name: 'Covid Today',
+        type: 'line',
+        data: covid.map((item) => [item.Date, item.Active]),
+      },
+    ],
+  };
 
   const onChartReady = (instance: EChartsInstance) => {
     console.log(instance);
@@ -46,9 +61,6 @@ function Days() {
   return (
     <Div>
       <ReactEChartsCore echarts={echarts} option={options} notMerge lazyUpdate onChartReady={onChartReady} />
-      {covid.map((item) => {
-        return <span>{item.Active}</span>;
-      })}
     </Div>
   );
 }

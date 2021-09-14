@@ -6,7 +6,7 @@ function Content() {
   return (
     <Switch>
       <Route exact path="/" component={Today} />
-      <Route path="/day" component={Days} />
+      <Route path="/days" component={Days} />
     </Switch>
   );
 }

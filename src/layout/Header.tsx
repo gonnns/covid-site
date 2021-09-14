@@ -42,8 +42,8 @@ function Header() {
     <HeaderStyled>
       <h1>COVID-19</h1>
       <NavStyled>
-        <Link to="/">금일현황</Link>
-        <Link to="/day">일별현황</Link>
+        <Link to="/">세계 현황</Link>
+        <Link to="/days">나라별 누적 현황</Link>
       </NavStyled>
       <select onChange={onChangeCountry} value={country}>
         <option value="kr">한국</option>
