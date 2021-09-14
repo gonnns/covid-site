@@ -25,7 +25,6 @@ function Today() {
   // Init
   useEffect(() => {
     API.Summary({}, setCovid);
-    console.log('effect');
   }, []);
 
   echarts.use([TitleComponent, TooltipComponent, GridComponent, BarChart, CanvasRenderer]);
@@ -34,6 +33,9 @@ function Today() {
     tooltip: { show: true },
     xAxis: {
       type: 'category',
+      axisLabel: {
+        interval: 0,
+      },
     },
     yAxis: {
       type: 'value',

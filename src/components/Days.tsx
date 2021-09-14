@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ import { EChartsInstance, EChartsOption } from 'echarts-for-react';
 
 import API from '../constants/ApiConstant';
 import { CovidStatus } from '../interface/CovidStatus';
-import { changeCountry, selectCountry } from '../store/covidSlice';
+import { changeCountry, fetchCountries, selectCountries, selectCountry } from '../store/covidSlice';
 
 const Div = styled.div`
   padding: 1rem;
@@ -22,12 +22,21 @@ const Div = styled.div`
 
 function Days() {
   const dispatch = useDispatch();
+
   const country = useSelector(selectCountry);
+  const countries = useSelector(selectCountries);
+
   const [covid, setCovid] = useState<CovidStatus[]>([]);
+
+  useMemo(() => {
+    dispatch(fetchCountries());
+  }, [dispatch]);
 
   // Init
   useEffect(() => {
-    API.Days({ country }, setCovid);
+    if (country !== '') {
+      API.Days({ country }, setCovid);
+    }
   }, [country]);
 
   echarts.use([TitleComponent, TooltipComponent, GridComponent, LineChart, CanvasRenderer]);
@@ -42,7 +51,7 @@ function Days() {
     },
     series: [
       {
-        name: 'Covid Today',
+        name: 'Covid Active',
         type: 'line',
         data: covid.map((item) => [item.Date, item.Active]),
       },
@@ -62,8 +71,13 @@ function Days() {
   return (
     <Div>
       <select onChange={onChangeCountry} value={country}>
-        <option value="kr">한국</option>
-        <option value="us">미국</option>
+        {countries.map((item) => {
+          return (
+            <option key={item.Slug} value={item.ISO2}>
+              {item.Country}
+            </option>
+          );
+        })}
       </select>
       <ReactEChartsCore
         echarts={echarts}
