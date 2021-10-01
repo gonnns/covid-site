@@ -10,9 +10,14 @@ import { GridComponent, TitleComponent, TooltipComponent } from 'echarts/compone
 import { CanvasRenderer } from 'echarts/renderers';
 import { EChartsInstance, EChartsOption } from 'echarts-for-react';
 
-import API from '../constants/ApiConstant';
-import { CovidStatus } from '../interface/CovidStatus';
-import { changeCountry, fetchCountries, selectCountries, selectCountry } from '../store/covidSlice';
+import API from '../../core/constants/ApiConstant';
+import { CovidStatus } from '../../core/interface/CovidStatus';
+import {
+  changeCountry,
+  fetchCountries,
+  selectCountries,
+  selectCountry,
+} from '../../store/covidSlice';
 
 const Div = styled.div`
   padding: 1rem;

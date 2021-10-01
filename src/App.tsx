@@ -1,13 +1,11 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import Content from './layout/Content';
-import Header from './layout/Header';
+import Main from './pages/Main';
 
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <Header />
-      <Content />
+      <Main />
     </Router>
   );
 }

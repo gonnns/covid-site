@@ -10,8 +10,8 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { EChartsInstance, EChartsOption } from 'echarts-for-react';
 
 import { sortBy } from 'lodash';
-import API from '../constants/ApiConstant';
-import { Summary } from '../interface/Summary';
+import API from '../../core/constants/ApiConstant';
+import { Summary } from '../../core/interface/Summary';
 
 const Div = styled.div`
   padding: 1rem;

@@ -1,7 +1,7 @@
 import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '.';
-import { Country } from '../interface/Country';
+import { Country } from '../core/interface/Country';
 
 interface CovidState {
   country: string;
